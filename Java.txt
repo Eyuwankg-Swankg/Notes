@@ -1,0 +1,27 @@
+Data Types in Java:
+
+Primitive Types:
+    boolean - default = 0 - 1bits - range = true or false
+    char - default = `\u0000` - 16 bits - range = ‘\u0000’ (0) to ‘\uffff’ (65535)
+    byte - default = 0 - 8bits - range = -128 to 127
+    short - default = 0 - 16bits - range = -32768 to 32767
+    int - default = 0 - 32bits - range = -2^31 to 2^31-1
+    long - default = 0 - 64bits - range = -2^63 to 2^63-1
+    float - default = 0.0 - 32bits - range upto 7 decimal digits
+    double - default = 0.0 - 64bits - range upto 16 decimal digits\
+
+Non-Primitive Types:
+    Array,Strings,Class,Object,Interface
+
+Operators and Precedance:
+https://www.geeksforgeeks.org/operators-in-java/
+
+Types of variables:
+    Local Variable : its is available locally to the function
+    Instance Variable : instance variables represents the instance of the class and it is declared with class name
+    Static Variables : static variables are also know as class variables its values does not change on instance
+                        its is declared with static keyword
+                        Unlike instance variables, we can only have one copy of a static variable per class, irrespective of how many objects we create.
+                        if created inside a class, accessible using class variable
+
+Wrapper Classes:
