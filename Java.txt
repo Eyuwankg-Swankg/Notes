@@ -72,3 +72,35 @@ Strings
     String s="Sachin"; 
     s.concat(" Tendulkar"); // will not concat as strings are immutable
     s=s.concat(" Tendulkar");  // allocate to new string object as strings are immutable
+    
+String Buffer
+    StringBuffer class in java is same as String class except it is mutable
+    import java.lang.*;
+    class test {
+        public static void main(String[] args){
+            StringBuffer sb=new StringBuffer("hello");
+            System.out.println(sb); //hello
+            sb.append("world!"); 
+            System.out.println(sb); // helloworld!
+            sb.insert(1,"italy"); // insert from position 1
+            System.out.println(sb); //hitalyelloworld!
+            sb.replace(0,1,"france"); // insert from position 1
+            System.out.println(sb); // franceitalyelloworld!
+            sb.delete(11,sb.length());  // delete from position 11 to end of string
+            System.out.println(sb);  // franceitaly
+            sb.reverse();  // will reverse the string
+            System.out.println(sb);  // ylatiecnarf
+        }
+    }
+
+String Builder 
+    StringBuilder in Java represents a mutable sequence of characters.
+    The StringBuilder class differs from the StringBuffer class on the basis of synchronization
+    StringBuilder class provides no guarantee of synchronization whereas the StringBuffer class does.
+    faster in single thread
+
+    methods:
+    https://www.geeksforgeeks.org/stringbuilder-class-in-java-with-examples/
+
+
+
