@@ -212,3 +212,53 @@ String Builder
     https://www.geeksforgeeks.org/stringbuilder-class-in-java-with-examples/
 
 
+Arrays
+    types of declarations:
+        int[] array;
+        int array[];
+    initialization:
+        int[] array=new int[20];
+
+    for(int i=0;i<array.length;i++)
+        System.out.println(array[i]);
+
+    2D Arrays:
+        int array[][] = new int[][];
+        int arr[][] = { { 2, 7, 9 }, { 3, 6, 1 }, { 7, 4, 2 } };
+
+    passing array as an argument:
+        static void getArray(int arr[]);
+        getArray(array);
+
+    returning array:
+        static int[] returnArray(){
+            return int[];
+        }
+        int arr[]=returnArray();
+
+    Array Cloning
+        int arr[]={1,2,3};
+        int array[]=arr.clone()
+        cloning of single dimension array creates a deep copy
+        cloning of multi dimension array creates a shallow copy
+
+            int array[]={1,2,3,4,5};
+        System.out.println(Arrays.asList(array)); // [[I@15db9742]
+        
+        Arrays.sort(array); // sort the array
+
+        System.out.println(Arrays.binarySearch(array, 0,3,2)); // search the element and returns index
+
+        int arr[]=Arrays.copyOf(array, 10);
+        // copyRangeOf(array,startIndex,endIndex)
+        for(int i=0;i<arr.length;i++)
+            System.out.print(arr[i]+" "); //1 2 3 4 5 0 0 0 0 0 
+            System.out.println();
+
+        int ak[] = new int[20];
+        Arrays.fill(ak, 20);
+        for(int i=0;i<ak.length;i++)
+            System.out.print(ak[i]+" "); //1 2 3 4 5 0 0 0 0 0 
+        System.out.println();
+
+        System.out.println(Arrays.toString(arr));
