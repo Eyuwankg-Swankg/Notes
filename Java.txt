@@ -25,3 +25,50 @@ Types of variables:
                         if created inside a class, accessible using class variable
 
 Wrapper Classes:
+    A Wrapper class is a class whose object wraps or contains primitive data types.
+    When we create an object to a wrapper class, it contains a field and in this field, we can store primitive data types.
+    Wrapper class in java provides the mechanism to convert primitive data type into object is called boxing and object into primitive data type is called unboxing.
+
+    available in java.lang
+
+    Primitive Type  Wrapper class
+    boolean         Boolean
+    char            Character
+    byte            Byte
+    short           Short
+    int             Integer
+    long            Long
+    float           Float
+    double          Double
+    import java.lang.*;
+    class test {
+        public static void main(String[] args){
+            // Same for all other primitive data types
+            int a=20;
+            Integer k=Integer.valueof(a);//converting int into Integer 
+            Integer j=a;//autoboxing, now compiler will write Integer.valueOf(a) internally 
+
+            //Converting Integer to int   
+            Integer b=new Integer(3);   
+            int p=b.intValue();//unboxing i.e converting Integer to int 
+            int q=a;//auto unboxing, now compiler will write a.intValue() internally   
+        }
+    }
+
+
+Strings 
+    String literal method:
+    when static allocated -> String s="geeks";
+    Whenever a String Object is created as a literal, the object will 
+    be created in the String constant pool. This allows JVM to optimize the initialization of String literal.
+
+    using 'new' keyword method:
+    when dynamically allocated -> String s=new String("geeks");
+    JVM will create a new string object in normal (non pool) heap memory and the literal “Welcome” will be 
+    placed in the string constant pool. The variable s will refer to the object in heap (non pool).
+
+    It is preferred to use String literals as it allows JVM to optimize memory allocation.
+    Strings are immutable
+    String s="Sachin"; 
+    s.concat(" Tendulkar"); // will not concat as strings are immutable
+    s=s.concat(" Tendulkar");  // allocate to new string object as strings are immutable
