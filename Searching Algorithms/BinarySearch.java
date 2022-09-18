@@ -9,7 +9,6 @@ public class BinarySearch {
         while (r >= l) {
 
             int mid = l + (r - l) / 2;
-
             if (array[mid] == searchElement)
                 return mid;
             else if (array[mid] > searchElement)
@@ -29,9 +28,9 @@ public class BinarySearch {
 
         // binary search only works on sorted array
         Arrays.sort(array);
-
+        
         // (array,LeftMostPosition,RightMostPosition,SearchElement)
-        int position = bs.binarySearch(array, 0, 10, 23);
+        int position = bs.binarySearch(array, 0, 10, 234);
 
         System.out.println(position);
 

@@ -262,3 +262,49 @@ Arrays
         System.out.println();
 
         System.out.println(Arrays.toString(arr));
+OOPS:
+    Class and Objects 
+    Class is blueprint or a protype 
+    Object is a instance of a class
+    Method and method passing 
+    A method is a collection of statements that perform some specific task and return the result to the caller
+    Message passing 
+        it is a communication between threads
+        like producer-consumer thread problem 
+    4 pillars of OOPS:
+        Abstraction
+            Abstraction is the property by virtue of which only the essential details are displayed to the user.
+            The trivial or non-essential units are not displayed to the user.
+            In Java, abstraction is achieved by interfaces and abstract classes.
+        Encapsulation
+            It is defined as the wrapping up of data under a single unit.
+            encapsulation is that it is a protective shield that prevents the data from being accessed by the code outside this shield
+            Encapsulation can be achieved by declaring all the variables in a class 
+            as private and writing public methods in the class to set and get the values of the variables.
+        Inheritance
+            It is a method which allows to inherit the features of another class
+            It allows reusability of code 
+            SuperClass: The class whose features are inherited
+            subclass: The class that inherits the other class
+
+            class derived-class extends base-class  
+            {  
+            //methods and fields  
+            }  
+            
+        Polymorphism
+            It is the ability define same method in different way
+            overloading 
+                same method name but different return type,no of argument,order of arguments
+            overriding
+                having same name,arguments,return type of the parent class method 
+                private methods,static,final,costructors cannot be overridden
+                using keyword 'super.methodname()' we can call the parent method inside the overridden methods in child class
+
+
+
+AccessModifiers:
+    Public: Accessible in all classes in your application
+    Protected:  Accessible within the package in which it is defined and in its subclass(es) 
+    Private:  Accessible only within the class in which it is defined.
+    default: Accessible within the same class and package within which its class is defined.
