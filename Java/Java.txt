@@ -285,12 +285,18 @@ OOPS:
             It is a method which allows to inherit the features of another class
             It allows reusability of code 
             SuperClass: The class whose features are inherited
-            subclass: The class that inherits the other class
+            SubClass: The class that inherits the other class
 
             class derived-class extends base-class  
             {  
             //methods and fields  
             }  
+
+            Types of Inheritance 
+                Single Inheritance
+                Multilevel Inheritance
+                Hierarchial Inheritance
+                Multiple Inheritance
             
         Polymorphism
             It is the ability define same method in different way
@@ -300,7 +306,6 @@ OOPS:
                 having same name,arguments,return type of the parent class method 
                 private methods,static,final,costructors cannot be overridden
                 using keyword 'super.methodname()' we can call the parent method inside the overridden methods in child class
-
 
 
 AccessModifiers:
