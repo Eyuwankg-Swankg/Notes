@@ -1,3 +1,4 @@
+package Inheritance;
 import java.util.*;
 import java.lang.*;
 

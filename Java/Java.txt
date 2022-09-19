@@ -276,6 +276,17 @@ OOPS:
             Abstraction is the property by virtue of which only the essential details are displayed to the user.
             The trivial or non-essential units are not displayed to the user.
             In Java, abstraction is achieved by interfaces and abstract classes.
+            Abstract Classes 
+                An abstract class is a class that is declared with an abstract keyword.
+                An abstract method is a method that is declared without implementation.
+                An abstract class may or may not have all abstract methods. Some of them can be concrete methods
+                A method-defined abstract must always be redefined in the subclass, thus making overriding compulsory 
+                or making the subclass itself abstract.
+                Any class that contains one or more abstract methods must also be declared with an abstract keyword.
+                There can be no object of an abstract class. That is, an abstract class can not be directly instantiated 
+                with the new operator.
+                An abstract class can have parameterized constructors and the default constructor is always present 
+                in an abstract class.
         Encapsulation
             It is defined as the wrapping up of data under a single unit.
             encapsulation is that it is a protective shield that prevents the data from being accessed by the code outside this shield
@@ -294,9 +305,18 @@ OOPS:
 
             Types of Inheritance 
                 Single Inheritance
+                    subclasses inherit the features of one superclass.
                 Multilevel Inheritance
+                    a derived class will be inheriting a base class and as well as the derived class 
+                    also act as the base class to other class. 
                 Hierarchial Inheritance
+                    In Hierarchical Inheritance, one class serves as a superclass (base class) for
+                    more than one subclass
                 Multiple Inheritance
+                    one class can have more than one superclass and inherit features from all parent classes.
+                    Java does not support multiple inheritances with classes.
+                    In java, we can achieve multiple inheritances only through Interfaces.
+
             
         Polymorphism
             It is the ability define same method in different way
