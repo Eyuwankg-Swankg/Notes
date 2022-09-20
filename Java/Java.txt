@@ -360,3 +360,73 @@ AccessModifiers:
     Protected:  Accessible within the package in which it is defined and in its subclass(es) 
     Private:  Accessible only within the class in which it is defined.
     default: Accessible within the same class and package within which its class is defined.
+
+Constructors:
+    A constructor in Java is a special method that is used to initialize objects. The constructor is called 
+    when an object of a class is created. It can be used to set initial values for object attributes. 
+    Constructors dosent have return type 
+    Constructor have same name as class name
+    It is called only once at the time of object creation
+    class Const{
+        // constructor
+        Const(){}
+    }
+    'super()' is used to call the parent class constructor while inherited
+
+    Copy Constructor 
+        it is a constructor overloading type where we create a constructor with the parameter as object of that class 
+        some times we need a new object with same values another object, we can use this copy constructor to automaticaly copy 
+        all the values declared for the object to new object
+        class Copy{
+
+            Copy(int a,int b){
+
+            }
+
+            Copy(Copy c){
+
+            }
+        }
+        class Main{
+            public static void main(){
+                // Insted of passing these values again we can use the copy constructor to create a new 
+                // object with these values
+                // calling the original constructor
+                Copy copy = new Copy(10,20);
+
+                // calling the copy constructor with the copy object 
+                Copy c1 = new Copy(copy);
+                
+                // this dosent call copy constructor
+                // this is just assigning the reference of 'copy' object to 'c2' object
+                Copy c2=copy;
+            }
+        }
+
+Singletone Class
+    a class is said to be singleton if it limits the number of objects of that class to one.
+    We can’t have more than a single object for such classes.
+    Singleton classes are employed extensively in concepts like Networking and Database Connectivity.
+    The constructor of singleton class would be private so there must be another way to get the instance of that class.
+    Singleton class can have only one object which can be used 
+    its object can be created inside the class only 
+    we have to create a static method which can be called using the class name
+    which returs the instace or object of that singleton class
+    class Singletone{
+        static Singletone instance=null;
+        private Singletone(){
+
+        }
+        static public Singletone getInstace(){
+            if(instance==null)
+                instance=new Singletone();
+            return instance;
+        }
+    }
+    class Main{
+         public static void main(String args[])    
+        {    
+            // we can call the instance static method inside the class and get the object instace of the class
+            MySingleton a = MySingleton.getInstance();
+        }
+    }
