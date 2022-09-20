@@ -339,9 +339,17 @@ OOPS:
             
         Polymorphism
             It is the ability define same method in different way
-            overloading 
+            Types:
+                Compile-time Polymorphism
+                    Method overloading
+                    Constructor Overloading 
+                Runtime Polymorphism
+                    Method overriding
+            Method overloading
                 same method name but different return type,no of argument,order of arguments
-            overriding
+            Constructor Overloading 
+                Same Constructor name but with different paramters,order of parameters
+            Method overriding
                 having same name,arguments,return type of the parent class method 
                 private methods,static,final,costructors cannot be overridden
                 using keyword 'super.methodname()' we can call the parent method inside the overridden methods in child class
