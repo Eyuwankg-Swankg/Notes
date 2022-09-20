@@ -14,7 +14,7 @@ Non-Primitive Types:
     Array,Strings,Class,Object,Interface
 
 Operators and Precedance:
-https://www.geeksforgeeks.org/operators-in-java/
+    https://www.geeksforgeeks.org/operators-in-java/
 
 Types of variables:
     Local Variable : its is available locally to the function
@@ -28,6 +28,8 @@ Wrapper Classes:
     A Wrapper class is a class whose object wraps or contains primitive data types.
     When we create an object to a wrapper class, it contains a field and in this field, we can store primitive data types.
     Wrapper class in java provides the mechanism to convert primitive data type into object is called boxing and object into primitive data type is called unboxing.
+    Data structures in the Collection framework, such as ArrayList and Vector, store only objects (reference types) and not primitive types.
+    An object is needed to support synchronization in multithreading.
 
     available in java.lang
 
@@ -476,3 +478,24 @@ Methods:
                 b.method2(); // Hello Method2
             }
         }
+
+Interface: 
+    an abstract type used to specify the behavior of a class. An interface in Java is a blueprint of a class.
+    There can be only abstract methods in the Java interface, not the method body.
+    It is used to achieve abstraction and multiple inheritance in Java.
+    We can’t create an instance(interface can’t be instantiated) 
+    A class can implement more than one interface.
+    An interface can extend to another interface or interface (more than one interface).
+    A class that implements the interface must implement all the methods in the interface.
+    All the methods are public and abstract. And all the fields are public, static, and final.
+    It is used to achieve multiple inheritances.
+
+    interface Player
+    {
+        final int id = 10;
+        int move();
+    }
+
+    same method name in 2 interface 
+    importing varibales 
+    assigning values to varibales
