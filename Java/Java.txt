@@ -367,10 +367,12 @@ Constructors:
     Constructors dosent have return type 
     Constructor have same name as class name
     It is called only once at the time of object creation
+
     class Const{
         // constructor
         Const(){}
     }
+
     'super()' is used to call the parent class constructor while inherited
 
     Copy Constructor 
@@ -403,30 +405,74 @@ Constructors:
             }
         }
 
-Singletone Class
-    a class is said to be singleton if it limits the number of objects of that class to one.
-    We can’t have more than a single object for such classes.
-    Singleton classes are employed extensively in concepts like Networking and Database Connectivity.
-    The constructor of singleton class would be private so there must be another way to get the instance of that class.
-    Singleton class can have only one object which can be used 
-    its object can be created inside the class only 
-    we have to create a static method which can be called using the class name
-    which returs the instace or object of that singleton class
-    class Singletone{
-        static Singletone instance=null;
-        private Singletone(){
+    Constructor Chaining
+        it is a process of calling one constructor inside a another constructor of the same class 
+        to avoid duplicates codes and divide the task among constructors
+        Within same class: It can be done using this() keyword for constructors in the same class
+        From base class: by using super() keyword to call the constructor from the base class.
+        This process is used when we want to perform multiple tasks in a single constructor rather than 
+        creating a code for each task in a single constructor we create a separate constructor for each 
+        task and make their chain which makes the program more readable. 
+        The this() expression should always be the first line of the constructor.
+        There should be at-least be one constructor without the this() keyword.
+        Constructor chaining can be achieved in any order.
 
+    Singletone Class
+        a class is said to be singleton if it limits the number of objects of that class to one.
+        We can’t have more than a single object for such classes.
+        Singleton classes are employed extensively in concepts like Networking and Database Connectivity.
+        The constructor of singleton class would be private so there must be another way to get the instance of that class.
+        Singleton class can have only one object which can be used 
+        its object can be created inside the class only 
+        we have to create a static method which can be called using the class name
+        which returs the instace or object of that singleton class
+
+        class Singletone{
+            static Singletone instance=null;
+            private Singletone(){
+
+            }
+            static public Singletone getInstace(){
+                if(instance==null)
+                    instance=new Singletone();
+                return instance;
+            }
         }
-        static public Singletone getInstace(){
-            if(instance==null)
-                instance=new Singletone();
-            return instance;
+        class Main{
+            public static void main(String args[])    
+            {    
+                // we can call the instance static method inside the class and get the object instace of the class
+                MySingleton a = MySingleton.getInstance();
+            }
         }
-    }
-    class Main{
-         public static void main(String args[])    
-        {    
-            // we can call the instance static method inside the class and get the object instace of the class
-            MySingleton a = MySingleton.getInstance();
+
+Methods:
+    Static Methods:
+        Static methods are the methods in Java that can be called without creating an object of class. 
+        They are referenced by the class name itself or reference to the Object of that class.  
+        When you have code that can be shared across all instances of the same class, put that portion of code into static method.
+        They are basically used to access static field(s) of the class.
+    Abstract Methods:
+        Abstarct methods are just declarations of methods with return type parameters.
+        Any class that contains one or more abstract methods must also be declared abstract.
+        
+        abstract class Abstract {
+            abstract void method1();
+            void method2(){
+                System.out.println("Hello Method2");
+            }
         }
-    }
+
+        class Base extends Abstarct{
+            void method1(){
+                System.out.println("Hello Method1");
+            }
+        }
+
+        class Main{
+            void main(){
+                Base b=new Base();
+                b.method1(); // Hello Method1
+                b.method2(); // Hello Method2
+            }
+        }
