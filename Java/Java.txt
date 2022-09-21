@@ -499,3 +499,117 @@ Interface:
     same method name in 2 interface 
     importing varibales 
     assigning values to varibales
+
+Final Variable:
+    it is a non-access modifier applicable only to variable,method,class 
+    final variable -> to create a constant variable 
+    final method -> to prevent method overriding
+    final class -> to prevent inheritance of the class 
+
+    value of a final varibale cannot be changed 
+    but for objects they are final reference variable to objects
+    so we can change the internal state of object reference
+
+        final StringBuilder sb = new StringBuilder("Geeks");
+
+        System.out.println(sb);//Geeks
+
+        // changing internal state of object reference by
+        //  final reference variable sb
+        sb.append("ForGeeks");
+
+        // Again printing the element in StringBuilder
+        // object after appending above element in it
+        System.out.println(sb); //GeeksForGeeks
+
+    We must initialize a final variable, otherwise, the compiler will throw a compile-time error. 
+    A final variable can only be initialized once, either via an initializer or an assignment statement
+
+    You can initialize a final variable when it is declared. This approach is the most common. 
+    final int a=10;
+
+    A final variable is called a blank final variable if it is not initialized while declaration. 
+    final int a;//blank final variable 
+
+    A blank final variable can be initialized inside an instance-initializer block or inside the constructor. 
+    If you have more than one constructor in your class then it must be initialized in all of them
+    class Test{
+        final int a;
+        Test(){
+            this.a=10;
+        }
+    }
+
+Final Classes:
+    When a class is declared with final keyword, it is called a final class. A final class cannot be extended(inherited). 
+
+    One is definitely to prevent inheritance, as final classes cannot be extended. For example, all Wrapper Classes like Integer, Float, etc. are final classes. We can not extend them.
+
+    The other use of final with classes is to create an immutable class like the predefined String class. One can not make a class immutable without making it final.
+
+Final Method:
+    When a method is declared with final keyword, it is called a final method. A final method cannot be overridden. 
+
+
+Static Keyword:
+    static is applicable to variable,method,class
+    we can declare a static block which gets executed only once when the class loads.
+    class 
+    class Test{
+        int a;
+        static{
+            a=10;
+        }
+    }
+    Static Variables:
+        when a variable is declared static only one copy of it is shared among objects and it can be called using the class name 
+        class Test{
+            static int a=10;
+        }
+        class Main{
+            public static void main(){
+                Test.a // applicable
+                Test test = Test();
+                test.a // not applicable, gives error 
+            }
+        }
+    Static Methods:
+        Any static member can be accessed before any objects of its class are created, and without reference to any object
+        They can only directly call other static methods.
+        They can only directly access static data.
+        They cannot refer to this or super in any way.
+        class Test{
+            static void print(){
+                System.out.print("Hello Static Method");
+            }
+        }
+        class Main{
+            public static void main(){
+                Test.print() // applicable
+                Test test = Test();
+                test.print // not applicable, gives error 
+            }
+        }
+    Static Class:
+        class can be declared static when it is nested inside another class or it is a nestsed class 
+        Nested static class doesn’t need a reference of Outer class. In this case, a static class cannot access non-static members of the Outer class. 
+        A static nested class may be instantiated without instantiating its outer class.
+        Inner classes can access both static and non-static members of the outer class. A static class can access only the static members of the outer class.
+
+        class Copy {
+            
+            static class Test{
+                static int a=10;
+            }
+        }
+
+        class test {
+            public static void main(String[] args) {
+
+                Copy.Test obj=new Copy.Test();
+                System.out.println(Copy.Test.a); // applicable
+                System.out.println(obj.a); // applicable
+            }
+        }
+This Keyword:
+    https://www.geeksforgeeks.org/this-reference-in-java/
