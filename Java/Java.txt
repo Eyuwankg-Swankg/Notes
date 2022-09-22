@@ -359,9 +359,11 @@ OOPS:
 
 AccessModifiers:
     Public: Accessible in all classes in your application
-    Protected:  Accessible within the package in which it is defined and in its subclass(es) 
-    Private:  Accessible only within the class in which it is defined.
-    default: Accessible within the same class and package within which its class is defined.
+    Protected:  Accessible within the package,and accessible through child class outside package,
+                If there is no child class it cannot be accessed outside the class
+    Private:  Accessible only within the class in which it is defined.cannot be accessed from outside the class.
+    default: Accessible within the same package cannot be accessed outside the package if no access modifier specified.
+    https://media.geeksforgeeks.org/wp-content/cdn-uploads/Access-Modifiers-in-Java.png
 
 Constructors:
     A constructor in Java is a special method that is used to initialize objects. The constructor is called 
@@ -611,5 +613,64 @@ Static Keyword:
                 System.out.println(obj.a); // applicable
             }
         }
-This Keyword:
+'this' Keyword:
     https://www.geeksforgeeks.org/this-reference-in-java/
+
+Enums:
+    Enumerations serve the purpose of representing a group of named constants in a programming language.
+
+    Enums are used when we know all possible values at compile time, such as choices on a menu, rounding modes, command-line flags, 
+
+    A Java enumeration is a class type. Although we don’t need need to instantiate an enum using new, 
+    it has the same capabilities as other classes. This fact makes Java enumeration a very powerful tool. 
+    Just like classes, you can give them constructor, add instance variables and methods, and even implement interfaces.
+
+    Enum declaration can be done outside a Class or inside a Class but not inside a Method.
+
+    public class Test {
+        enum Color {
+            RED,
+            GREEN,
+            BLUE;
+        }
+    
+        // Driver method
+        public static void main(String[] args)
+        {
+            Color c1 = Color.RED;
+            System.out.println(c1);
+        }
+    }
+
+Transient:
+    transient is a variables modifier used in serialization. At the time of serialization,
+     if we don’t want to save value of a particular variable in a file, then we use transient keyword. 
+     When JVM comes across transient keyword, it ignores original value of the variable and save default value of that variable data type.
+
+    transient keyword plays an important role to meet security constraints. 
+
+    There are various real-life examples where we don’t want to save private data in file.
+     Another use of transient keyword is not to serialize the variable whose value can be calculated/derived 
+     using other serialized objects or system such as age of a person, current date, etc.
+
+    Practically we serialized only those fields which represent a state of instance, after all serialization is
+     all about to save state of an object to a file. It is good habit to use transient keyword with private 
+     confidential fields of a class during serialization.
+
+    // A sample class that uses transient keyword to
+    // skip their serialization.
+    class Test implements Serializable
+    {
+        // Making password transient for security
+        private transient String password;
+    
+        // Making age transient as age is auto-
+        // computable from DOB and current date.
+        transient int age;
+    
+        // serialize other fields
+        private String username, email;
+        Date dob;
+    
+        // other code
+    }
