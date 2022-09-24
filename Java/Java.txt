@@ -733,3 +733,103 @@ Nested Class:
 Throwable Class:
     Throwable class is the super class of all error and Exception in java 
     
+
+Exception Handling
+    It is the way of handling exceptions that occur in program,
+    it help is not breaking the execution and handle the exception
+
+    All exception and errors types are subclass of class Throwable 
+        Checked Exception
+        Unchecked Exception
+        https://media.geeksforgeeks.org/wp-content/uploads/20220120111809/Group21-660x330.jpg
+
+        Built-in exceptions are the exceptions that are available in Java libraries. 
+         These exceptions are suitable to explain certain error situations.
+            Checked Exceptions: Checked exceptions are called compile-time exceptions because these exceptions 
+                are checked at compile-time by the compiler.
+ 
+            Unchecked Exceptions: The unchecked exceptions are just opposite to the checked exceptions. 
+                The compiler will not check these exceptions at compile time. In simple words, if a program throws an 
+                 unchecked exception, and even if we didn’t handle or declare it, the program would not give a compilation error.
+
+    Types of Exception:
+
+        ArithmeticException: It is thrown when an exceptional condition has occurred in an arithmetic operation.
+
+        ArrayIndexOutOfBoundsException: It is thrown to indicate that an array has been accessed with an illegal index. 
+
+        ClassNotFoundException: This Exception is raised when we try to access a class whose definition is not found
+
+        FileNotFoundException: This Exception is raised when a file is not accessible or does not open.
+
+        IOException: It is thrown when an input-output operation failed or interrupted
+
+        InterruptedException: It is thrown when a thread is waiting, sleeping, or doing some processing, and it is interrupted.
+
+        NoSuchFieldException: It is thrown when a class does not contain the field (or variable) specified
+
+        NoSuchMethodException: It is thrown when accessing a method that is not found.
+
+        NullPointerException: This exception is raised when referring to the members of a null object. Null represents nothing
+
+        NumberFormatException: This exception is raised when a method could not convert a string into a numeric format.
+
+        RuntimeException: This represents an exception that occurs during runtime.          
+
+        StringIndexOutOfBoundsException: It is thrown by String class methods to indicate that an index is either negative or greater than the size of the string
+
+        IllegalArgumentException : This exception will throw the error or error statement when the method receives an argument which is not accurately fit to the given relation or condition. It comes under the unchecked exception. 
+
+        IllegalStateException : This exception will throw an error or error message when the method is not accessed for the particular operation in the application. It comes under the unchecked exception.
+
+    Methods to print the Exception information:
+        printStackTrace()– This method prints exception information in the format of Name of the exception: description of the exception, stack
+                            trace.
+                            java.lang.ArithmeticException: / by zero
+                            at GFG.main(File.java:10)
+
+        toString() – This method prints exception information in the format of Name of the exception: description of the exception.
+                            java.lang.ArithmeticException: / by zero
+
+        getMessage() -This method prints only the description of the exception.
+                            / by zero
+
+
+    If an exception occurs within the try block, it is thrown. Your code can catch this exception (using catch block)
+    To manually throw an exception, use the keyword throw. Any exception that is thrown out of a method must be specified 
+     as such by a throws clause.
+    Any code that absolutely must be executed after a try block completes is put in a finally block.
+
+    Syntax:
+        try{
+            // statments that may raise error 
+        }
+        catch(){
+            // statements to handle the exception occurred
+        }
+        finally{
+            // no matter error occurs or not this block gets executed
+            // statement that gets executed after try block ends
+        }
+
+    try: The try block contains a set of statements where an exception can occur.
+    catch: The catch block is used to handle the uncertain condition of a try block
+    throw: The throw keyword is used to transfer control from the try block to the catch block. 
+            It is used to manually throw or raise exception 
+    throws: The throws keyword is used for exception handling without try & catch block. 
+             It specifies the exceptions that a method can throw to the caller and does not handle itself. 
+
+             class ExceptionHandling{
+                int a=10;
+                int b=0;
+                int getNumber() throws ArithmeticException{
+                    if(b==0)
+                        throw new ArithmeticException("b is 0");
+                    else 
+                        return a/b;
+                }
+             }
+    finally: It is executed after the catch block. We use it to put some common code (to be executed irrespective of 
+              whether an exception has occurred or not ) when there are multiple catch blocks. 
+
+        
