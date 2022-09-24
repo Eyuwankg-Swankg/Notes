@@ -295,6 +295,22 @@ OOPS:
                 with the new operator.
                 An abstract class can have parameterized constructors and the default constructor is always present 
                 in an abstract class.
+                Child class should provide implementation to all methods 
+                there can be final methods in abstract class but abstract class can't be final
+
+                abstract class Car{
+                    String Engine;
+                    int CC;
+                    abstract void getSpec();
+                }
+
+                // should provide implementation for all methods
+                class Main() extends Car{
+                    void getSpec(){
+
+                    }
+                }
+                
         Encapsulation
             It is defined as the wrapping up of data under a single unit.
             encapsulation is that it is a protective shield that prevents the data from being accessed by the code outside this shield
@@ -365,7 +381,7 @@ AccessModifiers:
     default: Accessible within the same package cannot be accessed outside the package if no access modifier specified.
     https://media.geeksforgeeks.org/wp-content/cdn-uploads/Access-Modifiers-in-Java.png
 
-Constructors:
+Constructors:  
     A constructor in Java is a special method that is used to initialize objects. The constructor is called 
     when an object of a class is created. It can be used to set initial values for object attributes. 
     Constructors dosent have return type 
@@ -420,35 +436,6 @@ Constructors:
         The this() expression should always be the first line of the constructor.
         There should be at-least be one constructor without the this() keyword.
         Constructor chaining can be achieved in any order.
-
-    Singletone Class
-        a class is said to be singleton if it limits the number of objects of that class to one.
-        We can’t have more than a single object for such classes.
-        Singleton classes are employed extensively in concepts like Networking and Database Connectivity.
-        The constructor of singleton class would be private so there must be another way to get the instance of that class.
-        Singleton class can have only one object which can be used 
-        its object can be created inside the class only 
-        we have to create a static method which can be called using the class name
-        which returs the instace or object of that singleton class
-
-        class Singletone{
-            static Singletone instance=null;
-            private Singletone(){
-
-            }
-            static public Singletone getInstace(){
-                if(instance==null)
-                    instance=new Singletone();
-                return instance;
-            }
-        }
-        class Main{
-            public static void main(String args[])    
-            {    
-                // we can call the instance static method inside the class and get the object instace of the class
-                MySingleton a = MySingleton.getInstance();
-            }
-        }
 
 Methods:
     Static Methods:
@@ -674,3 +661,75 @@ Transient:
     
         // other code
     }
+
+Singletone Class
+    a class is said to be singleton if it limits the number of objects of that class to one.
+    We can’t have more than a single object for such classes.
+    Singleton classes are employed extensively in concepts like Networking and Database Connectivity.
+    The constructor of singleton class would be private so there must be another way to get the instance of that class.
+    Singleton class can have only one object which can be used 
+    its object can be created inside the class only 
+    we have to create a static method which can be called using the class name
+    which returs the instace or object of that singleton class
+
+    class Singletone{
+        static Singletone instance=null;
+        private Singletone(){
+
+        }
+        static public Singletone getInstace(){
+            if(instance==null)
+                instance=new Singletone();
+            return instance;
+        }
+    }
+    class Main{
+        public static void main(String args[])    
+        {    
+            // we can call the instance static method inside the class and get the object instace of the class
+            MySingleton a = MySingleton.getInstance();
+        }
+    }
+
+Nested Class:   
+    It is a class that is declared inside another class or interface 
+    it can access all members of the outer class including private members and methods 
+    
+    while accessing outer class memebers we dont need instance 
+     since the object of inner class or nested class is created using instance of outer class 
+     it will get value of outer class variables from that instace
+
+    ways of creating object for nested class:
+        // first create object for outer class
+        Outer outer = new Outer("Tata");
+        // using outer class object to create a new instace of nested class
+        Outer.Nested nested = outer.new Nested();
+
+        // declare directly inner class object 
+        Outer.Nested nested = new Outer("Mahindra).new Nested();
+
+    class Outer{
+        private brand;
+        Outer(String brand){
+            this.brand=brand;
+        }
+        class Nested{
+            // we dont have to specify instace using this 
+            // it will get instace reference while creating object
+            public String display(){
+                return brand;
+            }
+        }
+    }
+
+    class Main{
+        static void main(){
+            Outer outer = new Outer("Tata");
+            // using outer class object to create a new instace of nested class
+            Outer.Nested nested = outer.new Nested();
+        }    
+    }
+
+Throwable Class:
+    Throwable class is the super class of all error and Exception in java 
+    
