@@ -771,6 +771,18 @@ Exception Handling
         NoSuchMethodException: It is thrown when accessing a method that is not found.
 
         NullPointerException: This exception is raised when referring to the members of a null object. Null represents nothing
+                                like when a object is given a value of null, and tried to access a method with that 
+                                object it gives NullPointerException
+
+                                -Invoking a method from a null object.
+                                -Accessing or modifying a null object’s field.
+                                -Taking the length of null, as if it were an array.
+                                -Accessing or modifying the slots of null object, as if it were an array.
+                                -Throwing null, as if it were a Throwable value.
+                                -When you try to synchronize over a null object.
+
+                                Null is a special value used in Java. It is mainly used to indicate that no value is assigned to a 
+                                    reference variable. One application of null is in implementing data structures like linked list and tree.
 
         NumberFormatException: This exception is raised when a method could not convert a string into a numeric format.
 
@@ -819,6 +831,8 @@ Exception Handling
     throws: The throws keyword is used for exception handling without try & catch block. 
              It specifies the exceptions that a method can throw to the caller and does not handle itself. 
 
+            Syntax: 
+                type method_name(parameters) throws exception_list
              class ExceptionHandling{
                 int a=10;
                 int b=0;
@@ -832,4 +846,43 @@ Exception Handling
     finally: It is executed after the catch block. We use it to put some common code (to be executed irrespective of 
               whether an exception has occurred or not ) when there are multiple catch blocks. 
 
+
+Package:
+    package is a way to Encapsulate a group of classes, sub Package, Interface
+
+    Adding a class to a Package : We can add more classes to a created package by using package name at the top of the 
+                    program and saving it in the package directory. We need a new java file to define a public class, otherwise 
+                    we can add the new class to an existing .java file and recompile it.
+    
+    Subpackages: Packages that are inside another package are the subpackages. These are not imported by default, they have to imported explicitly.
+
+    import java.util.*;
+        util is a subpackage created inside java package.
+
+    // import the Vector class from util package.
+        import java.util.vector; 
+
+    // import all the classes from util package
+        import java.util.*; 
+
+    Static import:
+        static import allows memebers defined in a class as public static to be used without specifing the class it defined
+
+        // Note static keyword after import.
+        import static java.lang.System.*;
         
+        class StaticImportDemo
+        {
+        public static void main(String args[])
+        {      
+                // We don't need to use 'System.out' 
+                // as imported using static.
+                out.println("GeeksforGeeks");
+        }
+        }
+        
+    Every class is part of some package.
+    If no package is specified, the classes in the file goes into a special unnamed package (the same unnamed package for all files).
+    All classes/interfaces in a file are part of the same package. Multiple files can specify the same package name.
+    If package name is specified, the file must be in a subdirectory called name (i.e., the directory name must match the package name).
+
