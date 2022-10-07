@@ -66,7 +66,7 @@ class SnakeGame{
         }
 
         // setting up tail
-        this.board[1][this.boardSize-3]='T';
+        this.board[1][this.snakeMovements.length]='T';
         this.snakeMovements[this.boardSize-3]=new Point(1,this.boardSize-2);
 
     }
@@ -130,7 +130,7 @@ class SnakeGame{
             char keyPress='a';
             do{
 
-                System.out.print("Enter Your Movement (W=up, A=left, S=down, D=right | E=Exit) : ");        
+                System.out.print("Enter Your Movement (W=up, A=left, S=down, D=right | Q=Quit) : ");        
                 keyPress = sc.next().charAt(0);
 
                 switch(keyPress){
@@ -154,8 +154,8 @@ class SnakeGame{
                                             System.out.println();
                                             if(this.snakeMovements[0].getX()==0)
                                                 this.snakeMovements[0].setX(this.boardSize-1);
-
-                                            this.snakeMovements[0].setX(this.snakeMovements[0].getX()-1);
+                                            else 
+                                                this.snakeMovements[0].setX(this.snakeMovements[0].getX()-1);
                                         }
                                         this.drawSnake();
                                         this.displayBoard();
@@ -170,8 +170,8 @@ class SnakeGame{
                                             }
                                             if(this.snakeMovements[0].getX()==this.boardSize-1)
                                                 this.snakeMovements[0].setX(0);
-
-                                            this.snakeMovements[0].setX(this.snakeMovements[0].getX()+1);
+                                            else 
+                                                this.snakeMovements[0].setX(this.snakeMovements[0].getX()+1);
                                         }
                                         this.drawSnake();
                                         this.displayBoard();
@@ -186,8 +186,8 @@ class SnakeGame{
                                             }
                                             if(this.snakeMovements[0].getY()==0)
                                                 this.snakeMovements[0].setY(this.boardSize-1);
-
-                                            this.snakeMovements[0].setY(this.snakeMovements[0].getY()-1);
+                                            else 
+                                                this.snakeMovements[0].setY(this.snakeMovements[0].getY()-1);
                                         }
                                         this.drawSnake();
                                         this.displayBoard();
@@ -202,13 +202,13 @@ class SnakeGame{
                                             }
                                             if(this.snakeMovements[0].getY()==this.boardSize-1)
                                                 this.snakeMovements[0].setY(0);
-
-                                            this.snakeMovements[0].setY(this.snakeMovements[0].getY()+1);
+                                            else 
+                                                this.snakeMovements[0].setY(this.snakeMovements[0].getY()+1);
                                         }
                                         this.drawSnake();
                                         this.displayBoard();
                                         break;
-                    case 'E' : case 'e':
+                    case 'Q' : case 'q':
                                         System.out.println("Game Over!");
                                         System.exit(0);
                                         break;
