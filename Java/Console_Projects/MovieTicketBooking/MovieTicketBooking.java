@@ -15,7 +15,7 @@ class Owner {
             case 1:
                 System.out.print("Movie Name : ");
                 String mvname = Owner.sc.next();
-                System.out.print("Runtime Name : ");
+                System.out.print("Runtime : ");
                 int mvruntime = Owner.sc.nextInt();
                 System.out.print("Price : ");
                 int mvprice = Owner.sc.nextInt();
@@ -56,6 +56,8 @@ class Ticket {
     public int price;
     public int[] bookedSeats;
 
+    public Ticket() {}
+
     public Ticket(int[] seatBooking, Movies movie) {
         this.ticketId = Ticket.iDs++;
         this.bookedSeats = seatBooking;
@@ -81,6 +83,7 @@ class Ticket {
             System.out.println("\n");
     
     }
+
 }
 
 class Movies {
@@ -134,17 +137,17 @@ class Movies {
     public void deleteMovie() {
         System.out.print("Enter Id of Movie : ");
         int movieId = sc.nextInt();
-        Movies.movies.remove(movieId - 1);
+        Movies.movies.remove(Movies.getMovie(movieId));
     }
 
     public void showSeats() {
-        System.out.print("  ");
+        System.out.print("   ");
         for (int i = 0; i < 10; i++) {
             System.out.print((i + 1) + " ");
         }
         System.out.println();
         for (int i = 0; i < 10; i++) {
-            System.out.print((i+1)+" ");
+            System.out.print((i+1)+"  ");
             for (int j = 0; j < 10; j++) {
                 System.out.print(this.seats[i][j] ? "B " : "_ ");
             }
@@ -155,7 +158,7 @@ class Movies {
     public void cancelBookedSeats(int[] bookedSeats){
         for(int i=0;i<bookedSeats.length;i++){
             int seatNo=bookedSeats[i];
-            this.seats[seatNo / 10][seatNo % 10] = false;
+            this.seats[(seatNo / 10)-1][(seatNo % 10)-1] = false;
         }
     }
 
@@ -169,12 +172,20 @@ class Movies {
         for (int i = 0; i < noOfSeat; i++) {
             this.showSeats();
             System.out.println("Enter SeatNo (" + (i + 1) + ") :  ");
-            int seatNo = sc.nextInt() - 1;
-            this.seats[seatNo / 10][seatNo % 10] = true;
+            int seatNo = sc.nextInt();
+            this.seats[(seatNo / 10)-1][(seatNo % 10)-1] = true;
             seatBookings[i] = seatNo;
         }
         this.showSeats();
         return seatBookings;
+    }
+
+    static Movies getMovie(int ID){
+        for(int i=0;i<movies.size();i++){
+            if(movies.get(i).movieId==ID)
+                return movies.get(i);
+        }
+        return new Movies();
     }
 
 }
@@ -185,7 +196,7 @@ class Customer {
     static Scanner sc = new Scanner(System.in);
 
     void getChoice() {
-
+        System.out.println("\n\n\n-------Customer Panel------");
         System.out.println("1.Show All Movie\n2.Book Ticket\n3.Cancel Ticket\n4.Show My Bookings\n5.Exit");
         System.out.println("Enter Your Choice: ");
         int choice = Customer.sc.nextInt();
@@ -203,7 +214,7 @@ class Customer {
                 getAllMovies.showAllMovies();
                 System.out.println("Enter Movie ID : ");
                 int movieId = Customer.sc.nextInt();
-                Movies movie = Movies.movies.get(movieId-1);
+                Movies movie = Movies.getMovie(movieId);
                 int[] bookings = movie.bookTicket();
                 MyTickets.add(new Ticket(bookings, movie));
                 getChoice();
@@ -212,9 +223,9 @@ class Customer {
             case 3: // cancel ticket
                 System.out.print("\nEnter Ticket ID : ");
                 int ticketId=Customer.sc.nextInt();
-                Movies moviesObj=Movies.movies.get(MyTickets.get(ticketId-1).movieId);
-                moviesObj.cancelBookedSeats(MyTickets.get(ticketId-1).bookedSeats);
-                MyTickets.remove(ticketId-1);
+                Movies moviesObj=Movies.getMovie(Customer.getTicket(ticketId).movieId);
+                moviesObj.cancelBookedSeats(Customer.getTicket(ticketId).bookedSeats);
+                MyTickets.remove(Customer.getTicket(ticketId));
                 getChoice();
                 break;
 
@@ -236,6 +247,14 @@ class Customer {
 
         }
 
+    }
+    
+    static Ticket getTicket(int ID){
+        for(int i=0;i<MyTickets.size();i++){
+            if(MyTickets.get(i).ticketId==ID)
+                return MyTickets.get(i);
+        }
+        return new Ticket();
     }
 
 }
