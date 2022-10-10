@@ -1,6 +1,6 @@
-package Package.FirstPackage;
+package Package;
 
-import Package.SecondPackage.Cars;
+import Package.Cars;
 
 class Skoda {
 

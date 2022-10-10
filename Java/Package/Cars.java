@@ -1,4 +1,4 @@
-package Package.SecondPackage;
+package Package;
 
 public class Cars {
     public String make;
