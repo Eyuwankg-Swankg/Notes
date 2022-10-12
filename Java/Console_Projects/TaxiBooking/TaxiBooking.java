@@ -25,8 +25,8 @@ class Taxi {
         this.pickupTime.add(pickupTime);
         this.isFree = false;
         this.currentPoint = dropPoint;
-        this.totalEarnings = (Math.abs(pickupTime - dropPoint) - 5) * 10 + 100;
-        this.totalDistanceTravelled = Math.abs(pickupTime - dropPoint)*15;
+        this.totalEarnings = this.totalEarnings + (Math.abs(pickupTime - dropPoint) - 5) * 10 + 100;
+        this.totalDistanceTravelled = this.totalDistanceTravelled + Math.abs(pickupTime - dropPoint)*15;
     }
 
 }
@@ -43,8 +43,8 @@ class TaxiRide extends Thread {
         t.isFree = false;
         try {
             System.out.println("Taxi " + t.id + " Assigned");
-            Thread.sleep(3000);
-            // Thread.sleep(6000000);
+            // Thread.sleep(3000);
+            Thread.sleep(6000000);
             t.isFree = true;
         } catch (Exception e) {
             System.out.println(e);
@@ -55,6 +55,7 @@ class TaxiRide extends Thread {
 public class TaxiBooking {
     static ArrayList<Taxi> taxis = new ArrayList<Taxi>();
     static int bookingID = 1;
+    static Scanner sc = new Scanner(System.in);
 
     TaxiBooking() {
         for (int i = 1; i < 5; i++)
@@ -62,7 +63,6 @@ public class TaxiBooking {
     }
 
     static void Start() {
-        Scanner sc = new Scanner(System.in);
         System.out.println("\nEnter Choice \n1.Book Taxi\n2.Taxi Details\n3.Taxi Status\n4.Exit");
         int choice = sc.nextInt();
 
@@ -101,8 +101,6 @@ public class TaxiBooking {
 
     }
     static void taxiBook() {
-
-        Scanner sc = new Scanner(System.in);
 
         System.out.println("\n Customer ID : ");
         int customerID = sc.nextInt();
