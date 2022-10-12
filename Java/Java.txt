@@ -886,3 +886,22 @@ Package:
     All classes/interfaces in a file are part of the same package. Multiple files can specify the same package name.
     If package name is specified, the file must be in a subdirectory called name (i.e., the directory name must match the package name).
 
+File:
+    File class has a way to load files into programs and has methods to read,write files
+
+    import java.io.File 
+
+    public static void main(){
+        File f=new File("filepath");
+
+        f.getName()
+        f.getAbsolutePath()
+        f.exists()
+        f.canWrite()
+        f.canRead()
+        f.isDirectory()
+        f.length() // in bytes 
+
+        to read contents of the file 
+        String[] arr=f.list()
+    }
