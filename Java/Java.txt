@@ -908,8 +908,12 @@ File:
 
 
 String Builder 
+hashmap
 vector 
 stack 
 file 
 threading 
 synchronization
+
+python functions 
+permutation, combination

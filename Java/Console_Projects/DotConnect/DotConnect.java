@@ -374,7 +374,6 @@ public class DotConnect {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Enter Board Size : ");
-
         row = sc.nextInt();
 
         col = sc.nextInt();
