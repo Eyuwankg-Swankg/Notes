@@ -8,9 +8,9 @@ class Ticket {
     static int PNR = 100;
     boolean isCancelled;
     boolean isWaitingList;
-    int[][] seatMap;
+    int[] seatMap;
 
-    Ticket(char fromStation, char toStation, int[][] seatMap, int noOfPassengers, boolean isWaitingList) {
+    Ticket(char fromStation, char toStation, int[] seatMap, int noOfPassengers, boolean isWaitingList) {
         this.fromStation = fromStation;
         this.toStation = toStation;
         this.noOfPassengers = noOfPassengers;
@@ -30,18 +30,13 @@ class Ticket {
         System.out.println(" Ticket Cancelled : " + (this.isCancelled ? "Yes" : "No"));
         if (this.isWaitingList == false) {
             System.out.print(" Seat No : ");
-            for (int i = 0; i <= this.toStation - this.fromStation; i++) {
-                for (int j = 0; j < this.noOfPassengers; j++) {
-                    System.out.print(seatMap[i][j]);
-                    System.out.print((char) (this.fromStation + i));
-                    if (i == this.toStation - this.fromStation && j == this.noOfPassengers)
-                        System.out.println();
-                    else
-                        System.out.print(",");
+            for(int i=0;i<noOfPassengers;i++){
+                System.out.print(seatMap[i]);
+                if(i<noOfPassengers-1){
+                    System.out.print(", ");
                 }
             }
-            System.out.println("\n*****************************");
-
+            System.out.println("\n");
         }
     }
 
@@ -60,7 +55,20 @@ public class TicketBook {
                 occupancyChart[i][j] = false;
         }
     }
-
+    
+    // TODO: REMOVE AT FINAL
+    static void secretOccupancy(){
+            System.out.println("\n   A  B  C  D  E  ");
+            for (int i = 0; i < 8; i++) {
+                System.out.print(i + 1+" ");
+                for (int j = 0; j < 10; j += 2) {
+                    System.out.print((occupancyChart[i][j]) ? " B" : " -");
+                    System.out.print((occupancyChart[i][j + 1]) ? "B" : "-");
+                }
+                System.out.println("\n");
+            }
+            System.out.println("\n -------------------------");
+    }
     static void printOccupancy() {
 
         System.out.println("\n  Occupancy Chart");
@@ -114,80 +122,54 @@ public class TicketBook {
         System.out.println("\n Invalid PNR No");
         viewTicket();
     }
-
+    static int getWaitingListIndex(int pnr){
+        for(int i=0;i<waitingList.size();i++){
+            if(waitingList.get(i).PNRNumber==pnr)   
+                return i;
+        }
+        return -1;
+    }
     static boolean checkWaitingListAvailability() {
         if (waitingList.size() > 1) {
             return false;
         }
         return true;
     }
+    static int[] assignSeats(char fromStation, char toStation, int noOfPassengers) {
 
-    static boolean checkSeatAvailability(char fromStation, char toStation, int noOfPassengers) {
-
-        for (int i = fromStation - 97; i <= toStation - 97; i++) {
-            int availableSeats = 0;
-
-            for (int j = 0; j < 8; j++) {
-
-                if (i == (fromStation - 97)) {
-                    int tempIndex = getIndex(fromStation) + 1;
-                    if (occupancyChart[j][tempIndex] == false)
-                        availableSeats++;
-                } else if (i == toStation - 97) {
-                    int tempIndex = getIndex(toStation);
-                    if (occupancyChart[j][tempIndex] == false)
-                        availableSeats++;
-                } else {
-                    int tempIndex = getIndex((char) (i + 97));
-                    if (occupancyChart[j][tempIndex] == false && occupancyChart[j][tempIndex + 1] == false)
-                        availableSeats++;
+        int[] seatMap = new int[noOfPassengers];
+        int availableSeats=0;
+        int fromStationIndex=getIndex(fromStation),toStationIndex=getIndex(toStation);
+        for(int i=0;i<8;i++){
+            int availableSeatInStations=0;
+            for(int j=fromStationIndex;j<=toStationIndex;j+=2){
+                if(j==fromStationIndex){
+                    if(occupancyChart[i][j+1]==false)
+                        availableSeatInStations++;
+                }else if(j==toStationIndex){
+                    if(occupancyChart[i][j]==false)
+                        availableSeatInStations++;
+                }else{
+                    if(occupancyChart[i][j]==false && occupancyChart[i][j+1]==false)
+                        availableSeatInStations++;  
                 }
             }
-            if (noOfPassengers > availableSeats)
-                return false;
-        }
-        return true;
-    }
-
-    static int[][] assignSeats(char fromStation, char toStation, int noOfPassengers) {
-
-        int[][] seatMap = new int[toStation - fromStation + 1][noOfPassengers];
-        int fromIndex = getIndex(fromStation) + 1, toIndex = getIndex(toStation);
-        int index = 0;
-        for (int i = fromStation - 97; i <= toStation - 97; i++, index++) {
-            int bookedSeatCount = 0;
-            for (int j = 0; j < 8; j++) {
-
-                if (i == (fromStation - 97)) {
-                    if (occupancyChart[j][fromIndex] == false) {
-                        occupancyChart[j][fromIndex] = true;
-                        try {
-                            seatMap[index][bookedSeatCount] = j + 1;
-                        } catch (Exception e) {
-                            System.out.println(i + " :");
-                        }
-                        bookedSeatCount++;
-                    }
-                } else if (i == (toStation - 97)) {
-                    if (occupancyChart[j][toIndex] == false) {
-                        occupancyChart[j][toIndex] = true;
-                        seatMap[index][bookedSeatCount] = j + 1;
-                        bookedSeatCount++;
-                    }
-                } else {
-                    int tempIndex = getIndex((char) (i + 97));
-                    if (occupancyChart[j][tempIndex] == false && occupancyChart[j][tempIndex + 1] == false) {
-                        occupancyChart[j][tempIndex] = true;
-                        occupancyChart[j][tempIndex + 1] = true;
-                        seatMap[index][bookedSeatCount] = j + 1;
-                        bookedSeatCount++;
-                    }
-                }
-                if (bookedSeatCount == noOfPassengers)
-                    break;
+            if(availableSeatInStations==((toStation-fromStation)+1)){
+                seatMap[availableSeats]=i+1;
+                availableSeats++;
             }
+            if(availableSeats==noOfPassengers)
+                break;
         }
-        return seatMap;
+        if(availableSeats==noOfPassengers){
+
+            for(int i=0;i<seatMap.length;i++){
+                for(int j=fromStationIndex+1;j<=toStationIndex;j++) 
+                    occupancyChart[seatMap[i]-1][j]=true;
+            }
+            return seatMap;
+        }
+        return new int[]{-1};
     }
 
     static void bookTicket() {
@@ -198,24 +180,22 @@ public class TicketBook {
         char toStation = Character.toLowerCase(scanner.next().charAt(0));
         System.out.print("Enter No of Passengers (<9) : ");
         int noOfPassengers = scanner.nextInt();
-        int[][] seatMap = new int[toStation - fromStation + 1][noOfPassengers];
-        boolean isAvailable = checkSeatAvailability(fromStation, toStation, noOfPassengers);
-        if (isAvailable) {
-            seatMap = assignSeats(fromStation, toStation, noOfPassengers);
-            tickets.add(
-                    new Ticket(fromStation, toStation, seatMap, noOfPassengers, false));
-            System.out.println("\nTicket Booked Successfully!!! ");
-        } else {
+        int[] seatMap = assignSeats(fromStation, toStation, noOfPassengers);
+        if (seatMap[0]==-1) {
             System.out.println("\nNo Seats Available");
             boolean isWaitingAvailable = checkWaitingListAvailability();
             if (isWaitingAvailable) {
                 waitingList.add(
-                        new Ticket(fromStation, toStation, seatMap, noOfPassengers, true));
+                        new Ticket(fromStation, toStation, new int[noOfPassengers], noOfPassengers, true));
                 System.out.println("\nPNR No : " + waitingList.get(waitingList.size() - 1).PNRNumber);
                 System.out.println("\nAdded to Waiting List");
             } else {
                 System.out.println("\nWaiting List is Full");
             }
+        }else{
+            tickets.add(
+                    new Ticket(fromStation, toStation, seatMap, noOfPassengers, false));
+            System.out.println("\nTicket Booked Successfully!!! ");
         }
     }
     
@@ -233,19 +213,57 @@ public class TicketBook {
                 inValidPNR = false;
             }
         }
+        if(inValidPNR){
+            for (int i = 0; i < waitingList.size(); i++) {
+                if (waitingList.get(i).PNRNumber == pnrNo) {
+                    cancellationTicket = waitingList.get(i);
+                    inValidPNR = false;
+                }
+            }
+        }
+        if(cancellationTicket.isCancelled){
+            System.out.println("Already Cancelled!!!");
+            return;
+        }
         if (inValidPNR) {
             System.out.println("\n Invalid PNR No");
             cancelTicket();
         } else {
-            // for (int i = cancellationTicket.fromStation - 65; i <= cancellationTicket.toStation - 65; i++) {
-            //     for (int j = 0; j < cancellationTicket.seatNo.length; j++) {
-            //         occupancyChart[cancellationTicket.seatNo[j] - 1][i] = false;
-            //     }
-            // }
-            // cancellationTicket.isCancelled = true;
-            // System.out.println(pnrNo + " Ticket Cancelled !!!");
+            if(cancellationTicket.isWaitingList){
+                int index=getWaitingListIndex(cancellationTicket.PNRNumber);    
+                if(index!=-1){  
+                    cancellationTicket.isCancelled=true;
+                    tickets.add(waitingList.get(index));
+                    waitingList.remove(index);
+                    System.out.println(pnrNo + " Ticket Cancelled !!!");
+                }
+                return;
+            }
+            int fromStationIndex=getIndex(cancellationTicket.fromStation),toStationIndex=getIndex(cancellationTicket.toStation);
+            for(int i=0;i<cancellationTicket.noOfPassengers;i++){
+                for(int j=fromStationIndex+1;j<=toStationIndex;j++) 
+                    occupancyChart[cancellationTicket.seatMap[i]-1][j]=false;
+            }
+            cancellationTicket.isCancelled=true;
+            System.out.println(pnrNo + " Ticket Cancelled !!!\n");
 
-            // checkWaitingList();
+            // Check Wailting list for allocation
+            Vector<Integer> confirmedIndex=new Vector<Integer>();
+            for(int i=0;i<waitingList.size();i++){
+                Ticket waitingTicket=waitingList.get(i);
+                int[] seatMap = assignSeats(waitingTicket.fromStation, waitingTicket.toStation, waitingTicket.noOfPassengers);
+                if(seatMap[0]!=-1){
+                    waitingTicket.seatMap=seatMap;
+                    waitingTicket.isWaitingList=false;
+                    confirmedIndex.add(i);
+                    System.out.println("Waiting List PNR" + waitingTicket.PNRNumber + " Allocated");
+                }
+            }
+            for(int index:confirmedIndex){
+                tickets.add(waitingList.get(index));
+                waitingList.remove(index);
+            }
+
         }
 
     }
@@ -259,8 +277,8 @@ public class TicketBook {
                 getChoice();
                 break;
             case 2:
-            cancelTicket();
-            getChoice();
+                cancelTicket();
+                getChoice();
             break;
             case 3:
                 printOccupancy();
@@ -271,6 +289,11 @@ public class TicketBook {
                 getChoice();
                 break;
             case 5:
+                break;
+            // TODO: CHECK AND REMOVE AFTER TESTING
+            case 6:
+                secretOccupancy();
+                getChoice();
                 break;
             default:
                 System.out.println("Invalid Choice! Try Again");
