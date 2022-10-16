@@ -1,0 +1,55 @@
+Duration: 3 Hours
+
+Programming Test (L3)
+
+Write a program to book train tickets as per the details given below.
+
+The program should first present a menu with the following options
+1. Book Ticket
+2. Cancel Ticket 
+3. Print Occupancy Chart 
+4. View Ticket 
+5. Exit
+
+Details and conditions that are common
+1. Train departure is from 'A' and destination is 'E'. It passes through 'B, 'C' and 'D'. 
+2. Tickets can be booked from any place, i.e ('A' to 'E') or ('C' to 'E') or ('B' to 'D') etc. 
+3.The train has only one coach with 8 seats 4.There can be only 2 Waiting list tickets in addition to 8 confirmed tickets
+
+Book Ticket
+When ticket booking is chosen in the menu, then the following details should be fetched as input from the user.
+From Station: 
+To Station : 
+No. of Passengers:
+Each ticket should have a PNR number (can be a random unique number).
+Once booking is over, the seat information along with PNR should be printed.
+
+Example:
+
+Ticket Info
+
+From:A 
+To:C 
+PNR: 12345 
+Seat Nos: 1,2
+
+Cancel Ticket
+1. Cancel Ticket is based on the PNR number. 
+2.After the PNR Number is provided, all the seats in it should be cancelled. The PNR should not be reused.It should be possible to see this PNR details. 
+3.When a ticket is canceled, the passengers in the waiting list WL1 should be considered. If that does not satisfy, then WL2 should be considered.
+
+
+Occupancy Chart
+This should just print the details as a table where the occupied seats should be marked separately like
+  A B C D E
+1 * * *
+2 * * *
+3 * * *
+4
+5
+6
+7
+8
+
+View Ticket
+The PNR should be fetched from the user and the details regarding that PNR should be printer. The details should include the start and the end stations, number of persons traveling and whether the ticket has been cancelled or not.

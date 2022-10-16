@@ -55,21 +55,8 @@ public class TicketBook {
                 occupancyChart[i][j] = false;
         }
     }
-    
-    // TODO: REMOVE AT FINAL
-    static void secretOccupancy(){
-            System.out.println("\n   A  B  C  D  E  ");
-            for (int i = 0; i < 8; i++) {
-                System.out.print(i + 1+" ");
-                for (int j = 0; j < 10; j += 2) {
-                    System.out.print((occupancyChart[i][j]) ? " B" : " -");
-                    System.out.print((occupancyChart[i][j + 1]) ? "B" : "-");
-                }
-                System.out.println("\n");
-            }
-            System.out.println("\n -------------------------");
-    }
-    static void printOccupancy() {
+
+   static void printOccupancy() {
 
         System.out.println("\n  Occupancy Chart");
         System.out.println("\n  A B C D E ");
@@ -195,6 +182,15 @@ public class TicketBook {
         }else{
             tickets.add(
                     new Ticket(fromStation, toStation, seatMap, noOfPassengers, false));
+            System.out.println("\nPNR No:"+tickets.get(tickets.size()-1).PNRNumber);
+            System.out.print("Seat No : ");
+            for(int i=0;i<noOfPassengers;i++){
+                System.out.print(seatMap[i]);
+                if(i<noOfPassengers-1){
+                    System.out.print(", ");
+                }
+            }
+            System.out.println("\n");
             System.out.println("\nTicket Booked Successfully!!! ");
         }
     }
@@ -245,7 +241,7 @@ public class TicketBook {
                     occupancyChart[cancellationTicket.seatMap[i]-1][j]=false;
             }
             cancellationTicket.isCancelled=true;
-            System.out.println(pnrNo + " Ticket Cancelled !!!\n");
+            System.out.println("PNR"+pnrNo + " Ticket Cancelled !!!\n");
 
             // Check Wailting list for allocation
             Vector<Integer> confirmedIndex=new Vector<Integer>();
@@ -289,11 +285,6 @@ public class TicketBook {
                 getChoice();
                 break;
             case 5:
-                break;
-            // TODO: CHECK AND REMOVE AFTER TESTING
-            case 6:
-                secretOccupancy();
-                getChoice();
                 break;
             default:
                 System.out.println("Invalid Choice! Try Again");
