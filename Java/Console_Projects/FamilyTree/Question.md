@@ -5,15 +5,15 @@ For a male, a match will be his father’s sister’s daughter or his mother’s
 For a female, a match will be her father’s sister’s son or her mother’s brother’s son.
 Names are unique.
 
-Input format:
+Input format:\
 <person's name>, <gender>, <father's name>, <mother's name>
 
-Input:
-John, Male, Brad, Lisa
-Emma, Female, Brad, Lisa
-Alex, Male, John, Jenny
-Emily, Female, Steve, Emma
+Input:\
+John, Male, Brad, Lisa\
+Emma, Female, Brad, Lisa\
+Alex, Male, John, Jenny\
+Emily, Female, Steve, Emma\
 Rachel, Female, Steve, Emma
 
-Person name: Alex
+Person name: Alex\
 Output: Emily, Rachel
